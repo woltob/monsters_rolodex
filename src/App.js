@@ -14,12 +14,17 @@ class App extends Component {
       monsters: [],
       searchField: ''
     };
+
   }
 
   componentDidMount() {
     fetch('https://dummy.restapiexample.com/api/v1/employees')
     .then(response=> response.json())
     .then(users => this.setState({monsters: users['data']}) );
+  }
+
+  handleChange(e) {
+    this.setState({searchField: e.target.value})
   }
 
   render() {
@@ -31,7 +36,7 @@ class App extends Component {
       <div className='App'>
         <SearchBox 
           placeholder='Search Mmmmonsters'
-          handleChange={e => this.setState({searchField: e.target.value})}
+          handleChange={e => this.handleChange(e)}
         />
         <CardList monsters={filteredMonsters} />
       </div>
