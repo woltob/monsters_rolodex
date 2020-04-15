@@ -29,7 +29,9 @@ class App extends Component {
 
   render() {
     const { monsters, searchField } = this.state;
-    const filteredMonsters = monsters.filter(monster => 
+    const filteredMonsters = monsters
+    .sort((a, b) => b.employee_salary - a.employee_salary)
+    .filter(monster => 
       monster.employee_name.toLowerCase().includes(searchField.toLowerCase())
     )
     return (
